@@ -48,35 +48,35 @@ public class TwitterMessageQueueConsumer implements Runnable {
         try {
             while (true) {
 
-                final String message = messageQueue.take();
-                logger.info(message);
+                try {
+                    final String message = messageQueue.take();
+                    logger.info(message);
 
-                final JsonNode jsonNode = objectMapper.readTree(message);
-                final Optional<TwitterMessage> twitterMessageOptional = TwitterMessageUtils.getTwitterMessage(objectMapper, jsonNode);
+                    final JsonNode jsonNode = objectMapper.readTree(message);
+                    final Optional<TwitterMessage> twitterMessageOptional = TwitterMessageUtils.getTwitterMessage(objectMapper, jsonNode);
 
-                if(twitterMessageOptional.isPresent()) {
-                    final TwitterMessage twitterMessage = twitterMessageOptional.get();
-                    twitterMessage.accept(new TwitterMessageVisitor() {
+                    if(twitterMessageOptional.isPresent()) {
+                        final TwitterMessage twitterMessage = twitterMessageOptional.get();
+                        twitterMessage.accept(new TwitterMessageVisitor() {
 
-                        @Override
-                        public void visit(TwitterStatus twitterStatus) {
-                            logger.info(String.format("%s: %s", twitterStatus.getUser().getScreenName(), twitterStatus.getText()));
-                            if(handleWhitelist.contains(twitterStatus.getUser().getScreenName())) {
-                                logger.info("User is in whitelist");
-                                twitterService.replyWithPlug(twitterStatus);
+                            @Override
+                            public void visit(TwitterStatus twitterStatus) {
+                                logger.info(String.format("%s: %s", twitterStatus.getUser().getScreenName(), twitterStatus.getText()));
+                                if(handleWhitelist.contains(twitterStatus.getUser().getScreenName())) {
+                                    logger.info("User is in whitelist");
+                                    twitterService.replyWithPlug(twitterStatus);
+                                }
                             }
-                        }
 
-                    });
+                        });
+                    }
+                } catch (IOException ex) {
+                    logger.error("Failed to process message, keeping consumer alive", ex);
                 }
 
             }
         } catch (InterruptedException ex) {
             logger.info("Consumer run interrupted", ex);
-        } catch (JsonProcessingException ex) {
-            logger.error("Failed to process message", ex);
-        } catch (IOException e) {
-            e.printStackTrace();
         }
     }
 

@@ -39,7 +39,7 @@ public class TractionDemoApplication {
     }
 
 	@Bean
-	public ConversionService conversionService() {
+    public ConversionService conversionService() {
 		return new DefaultConversionService();
 	}
 
