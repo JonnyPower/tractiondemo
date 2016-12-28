@@ -27,6 +27,11 @@ repositories {
 configurations {
 }
 
+jar {
+    baseName = 'tractiondemo'
+    version = '0.0.1'
+}
+
 dependencies {
 	//compile('org.springframework.session:spring-session')
 	compile('org.springframework.boot:spring-boot-starter-thymeleaf')
@@ -44,6 +49,5 @@ dependencies {
 }
 
 task stage {
-    dependsOn build
     dependsOn installDist
 }
