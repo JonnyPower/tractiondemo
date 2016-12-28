@@ -1,0 +1,43 @@
+buildscript {
+	ext {
+		springBootVersion = '1.4.3.RELEASE'
+	}
+	repositories {
+		mavenCentral()
+	}
+	dependencies {
+		classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+        classpath 'org.springframework:springloaded:1.2.6.RELEASE'
+	}
+}
+
+apply plugin: 'idea'
+apply plugin: 'java'
+apply plugin: 'eclipse-wtp'
+apply plugin: 'org.springframework.boot'
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+repositories {
+	mavenCentral()
+}
+
+configurations {
+}
+
+dependencies {
+	//compile('org.springframework.session:spring-session')
+	compile('org.springframework.boot:spring-boot-starter-thymeleaf')
+	compile('org.springframework.boot:spring-boot-starter-web')
+    compile('org.springframework.boot:spring-boot-devtools')
+
+	compile('com.twitter:hbc-core:2.2.0')
+    compile('org.twitter4j:twitter4j-core:4.0.1')
+
+    compile('com.stripe:stripe-java:3.5.0')
+
+    compile group: 'com.frejo', name: 'force-rest-api', version: '0.0.32'
+
+    testCompile('org.springframework.boot:spring-boot-starter-test')
+}

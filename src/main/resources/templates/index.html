@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8"/>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1"/>
+        <meta name="description" content="TractionOnDemand technical interview demo"/>
+        <meta name="author" content="Jonny Power"/>
+
+        <title>Traction Demo - Jonny Power</title>
+
+        <link href="https://fonts.googleapis.com/css?family=Cabin:500,500italic,600,600italic,700,700italic,italic,regular|Cabin Condensed:500,600,700,regular|Droid Sans:700,regular|Droid Sans Mono:regular|Lato:100,100italic,300,300italic,700,700italic,900,900italic,italic,italic,regular|Roboto Condensed:700&amp;subset=latin,latin-ext" rel="stylesheet" type="text/css"/>
+        <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet"/>
+        <link href="/css/bootstrap.min.css" rel="stylesheet"/>
+        <link href="/css/tractiondemo.css" rel="stylesheet"/>
+    </head>
+
+    <body>
+        <section id="content">
+
+            <div class="container">
+
+                <div class="row">
+                    <div class="row-xs-12 warning">
+                        This is not the real web page for Amnesty's white christmas campaign, click <a href="https://archive.amnesty.ie/join">here</a> for the real campaign website.
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="row">
+                            <div class="col-md-10 col-md-offset-1">
+                                <h1 class="join-title"><span class="join-title-span">Join Amnesty International to help end human rights abuses in Syria.</span></h1>
+
+                                <div class="join-now-header">
+                                    <h2>
+                                        Syria will experience a very different White Christmas from the one we’re dreaming of this year. Be part of our global network of 7 million activists and help us expose the horrific human rights abuses and hold those responsible to account.
+                                    </h2>
+                                    <form action="/donate" method="POST">
+                                        <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+                                                data-key="pk_test_K1fQIj6OZdtaeO4s3JJfdN6W"
+                                                data-amount="2000"
+                                                data-name="Amnesty International"
+                                                data-description="Donate"
+                                                data-image="/images/amnesty.png"
+                                                data-locale="auto"
+                                                data-currency="cad"
+                                                data-panel-label="Donate"
+                                                data-label="Donate with Card" >
+                                        </script>
+                                        <input type="hidden" name="amount" value="2000"/>
+                                        <input type="hidden" name="currency" value="cad"/>
+                                        <input type="hidden" name="campaign" th:if="${campaign} != null" th:value="${campaign}"/>
+                                        <input type="hidden" name="handle" th:if="${handle} != null" th:value="${handle}"/>
+                                        <input type="hidden" name="seed" th:if="${seed} != null" th:value="${seed}"/>
+
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </section>
+
+        <script src="/js/jquery-3.1.1.min.js"></script>
+        <script src="/js/bootstrap.min.js"></script>
+    </body>
+</html>

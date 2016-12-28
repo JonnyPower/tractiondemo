@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+    <html lang="en">
+    <head>
+    </head>
+
+    <body>
+        <script th:if="${requestUrl} != null" th:inline="javascript">
+            /*<![CDATA[*/
+
+            location.href = [[${requestUrl}]];
+
+            /*]]>*/
+        </script>
+    </body>
+</html>
