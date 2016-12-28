@@ -3,7 +3,6 @@ package com.jonnypower.tractiondemo.domain.salesforce;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-import javax.money.MonetaryAmount;
 import java.math.BigDecimal;
 import java.net.URL;
 
